@@ -8,6 +8,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 
 | Version | Tag | Upstream commit | Hardening report |
 |---------|-----|-----------------|------------------|
+| v1.2.3 | [`v1.2.3`](https://github.com/chainguard-actions/guibranco-github-status-action-v2/tree/v1.2.3) | [`f695229`](https://github.com/guibranco/github-status-action-v2/commit/f6952298057800f771cdce8e7918d5b88333eb89) | [`HARDENING.md`](https://github.com/chainguard-actions/guibranco-github-status-action-v2/blob/v1.2.3/HARDENING.md) |
 | v1.2.4 | [`v1.2.4`](https://github.com/chainguard-actions/guibranco-github-status-action-v2/tree/v1.2.4) | [`7763935`](https://github.com/guibranco/github-status-action-v2/commit/77639353504055053524efa7a3719aaf0b731ce9) | [`HARDENING.md`](https://github.com/chainguard-actions/guibranco-github-status-action-v2/blob/v1.2.4/HARDENING.md) |
 
 ## Privacy
