@@ -1,0 +1,47 @@
+{
+  "name": "github-status-action-v2",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Github status action V2",
+  "main": "lib/main.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "ava",
+    "pack": "ncc build",
+    "all": "npm run build && npm test",
+    "local": "npx @github/local-action",
+    "push": "npm run build && npm run pack && git add * && git commit -m \"ci: update built file\" && git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuiBranco/github-status-action-v2.git"
+  },
+  "keywords": [
+    "actions",
+    "node",
+    "setup"
+  ],
+  "author": "GuiBranco",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^2.0.2",
+    "@actions/github": "^9.1.1",
+    "node": "^26.1.0"
+  },
+  "devDependencies": {
+    "@octokit/types": "^16.0.0",
+    "@types/node": "25.6.0",
+    "@vercel/ncc": "^0.38.4",
+    "ava": "^7.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  },
+  "ava": {
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  }
+}
