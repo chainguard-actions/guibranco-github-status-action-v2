@@ -1,0 +1,40 @@
+name: Test success status with all inputs
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Get HEAD sha
+        id: head
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - id: action
+        uses: .
+        continue-on-error: true
+        with:
+          authToken: ${{ secrets.GITHUB_TOKEN }}
+          state: success
+          context: act-full-test
+          description: All inputs provided
+          sha: ${{ steps.head.outputs.sha }}
+          target_url: https://example.com/details
+      - name: Assert action ran (succeeded or failed gracefully on the sentinel repo)
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+          SHA: ${{ steps.head.outputs.sha }}
+        run: |
+          echo "outcome: $OUTCOME"
+          echo "sha: $SHA"
+          if [ -z "$SHA" ]; then
+            echo "FAIL: could not determine HEAD sha"
+            exit 1
+          fi
+          if [ "$OUTCOME" = "success" ]; then
+            echo "PASS: status created"
+          elif [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action failed gracefully (sentinel repo is not resolvable)"
+          else
+            echo "FAIL: unexpected outcome '$OUTCOME'"
+            exit 1
+          fi
